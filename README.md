@@ -14,7 +14,7 @@ Push new Branch/Push Changes: git push origin name_of_new_branch
 
 Commits: git commit -a -m commit_message -u
 
-Group Members:
+#### Group Members:
 
 Joseph Tan
 
