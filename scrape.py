@@ -22,6 +22,7 @@ class JobScraper:
         curWord = ""
         inWord = False
         inTag = False
+        #TODO Ignore "words" within <script> tags
         for s in plaintext:
             char = chr(s)
             if(char == '<'):
@@ -38,6 +39,7 @@ class JobScraper:
                     inWord = True
                     curWord = curWord + str(char)
         
+        #TODO get rid of duplicate words?
         return allWords
 
 #Arbitrary job posting for testing
