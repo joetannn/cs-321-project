@@ -16,28 +16,44 @@ class JobScraper:
         #soup = BeautifulSoup(r.text, 'html.parser')
         soup = BeautifulSoup(r.text, 'html.parser')
         plaintext = soup.encode("utf-8");
-        print(plaintext)
 
         allWords = []
         curWord = ""
+        curTag = ""
         inWord = False
         inTag = False
-        #TODO Ignore "words" within <script> tags
+        inScript = False
         for s in plaintext:
             char = chr(s)
             if(char == '<'):
                 inTag = True
+                curTag = ""
             elif(char == '>'):
+                if(inTag):
+                    if(curTag == "script"):
+                        inScript = True
+                    elif(curTag == "/script"):
+                        inScript = False
+                    curTag = ""
                 inTag = False
             elif(char == ' ' or char == '\n' or char == '\t'):
-                if(inWord):
+                if(inTag):
+                    if(curTag == "script"):
+                        inScript = True
+                    elif(curTag == "/script"):
+                        inScript = False
+                    curTag = ""
+
+                if(inWord and (not inScript)):
                     allWords.append([curWord])
                     curWord = ""
                 inWord = False
             else:
-                if(not inTag):
+                if(not inTag and not inScript):
                     inWord = True
                     curWord = curWord + str(char)
+                else:
+                    curTag = curTag + str(char)
         
         #TODO get rid of duplicate words?
         return allWords
