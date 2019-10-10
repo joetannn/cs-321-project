@@ -9,9 +9,10 @@ import hug
 def root():
     return 'Welcome home!'
 
-@hug.get(examples='first_num=6&second_num=8')
+
+@hug.get('/add', examples='/add?first_num=6&second_num=8')
 def do_add(first_num: hug.types.number, second_num: hug.types.number):
-    return {'Final Result:':{0} + {1}}
+    return {'Final Result:': first_num + second_num}
 
 
 print("Running API!")
