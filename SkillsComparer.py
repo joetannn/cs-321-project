@@ -7,9 +7,11 @@ class SkillsComparer:
         self.skillDictionary = dictionary
 
     #Both arguments are expected to be lists of Strings
-    def getExtraJobSkills(skillsList, jobSkills):
+    # @return list of strings representing extra skills
+    def getExtraJobSkills(self, skillsList, jobSkills):
         pass
 
     #Both arguments are expected to be lists of Strings
-    def getExtraSkillsListSkills(skillsList, jobSkills):
+    # @return list of strings representing extra skills
+    def getExtraSkillsListSkills(self, skillsList, jobSkills):
         pass
