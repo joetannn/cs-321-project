@@ -12,4 +12,5 @@ class CoverLetterBuilder:
     # param infile; file pointer with cover letter with indicators to be filled in with info
     # param outfile; file pointer where finished cover letter will be put
     def build(self, infile, outfile):
+        #TODO complete method
         pass
