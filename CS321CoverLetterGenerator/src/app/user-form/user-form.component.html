@@ -2,16 +2,14 @@
   <div class="form-group " style="margin-bottom: 0px;">
 
     <div class=" container"></div>
-    <!-- 
+
     <div id="stars" style="border-radius: 100%"></div>
     <div id="stars2" style="border-radius: 100%"></div>
-    <div id="stars3" style="border-radius: 100%"></div> -->
+    <div id="stars3" style="border-radius: 100%"></div>
 
     <div class="text ml-5 mr-5" data-text="Cover Letter Generator">Cover Letter Generator</div>
 
     <form class="input-form" #userForm="ngForm">
-
-
 
       <!-- First Name Input -->
       <input type="text" class="input-form-text" id="firstName" required [(ngModel)]="user.firstName" name="firstName"
@@ -71,7 +69,15 @@
         </li>
       </ul>
 
+      <!-- Comment to paste or upload -->
 
+      <h5 style="color: #ddd; padding-top:10px;">Paste or upload your resume</h5>
+
+      <!-- File input -->
+      <div>
+        <label for="file" style="padding-top: 0px;"></label>
+      </div>
+      <input type="file" id="file" style="color: #ddd;cursor: pointer;">
 
       <!-- Paste Resume -->
       <textarea class="input-form-text skillList" placeholder="Paste Your Resume" [(ngModel)]="user.resume"
