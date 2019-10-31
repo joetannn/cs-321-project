@@ -14,9 +14,6 @@ def root():
 def do_add(first_num: hug.types.number, second_num: hug.types.number):
     return {'Final Result:': first_num + second_num}
 
-def buildCoverLetter():
-
-
 def getExtraSkills():
 
 
