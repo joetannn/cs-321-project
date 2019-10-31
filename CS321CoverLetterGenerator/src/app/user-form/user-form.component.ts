@@ -17,7 +17,9 @@ export class UserFormComponent implements OnInit {
 
   //demo
   //if in prod, change this!!
-  configUrl = 'http://localhost:8000/add?first_num=6&second_num=8'
+  testUrl = 'http://localhost:8000/add?first_num=6&second_num=8'
+  baseUrl = 'http://localhost:8000'
+  sendUrl = '/send'
 
   coverLetter =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
@@ -40,7 +42,12 @@ export class UserFormComponent implements OnInit {
     this.submitted = true;
     this.user.skills = this.skillsObj;
     console.log(JSON.stringify(this.user)); // Here's the data in json
+    console.log("Running math test")
+    //if this fails, there is no connectivity
     this.showMath();
+    //
+    this.sendUserData();
+
 
 
   }
@@ -89,16 +96,45 @@ export class UserFormComponent implements OnInit {
     return JSON.stringify(this.user);
   }
 
+  //test methods that test connectivity
   getMath()
   {
-    return this.http.get(this.configUrl);
+    return this.http.get(this.testUrl);
   }
 
   showMath()
   {
     this.getMath().subscribe((data: any) =>
     {
-      console.log(JSON.stringify(data));
+      console.log("SHOULD EQUAL 14: " + JSON.stringify(data));
     });
   }
+
+  getUserData()
+  {
+    let params = new URLSearchParams();
+    for(let key in this.user)
+    {
+      //TODO: fix
+      if (key == "skills")
+      {
+        params.set(key, this.user[key]);
+        continue;
+      }
+      params.set(key, this.user[key]);
+    }
+    console.log("PARAMS: " + params.toString());
+    return this.http.get(this.baseUrl + this.sendUrl + "?" + params.toString());
+  }
+
+  sendUserData()
+  {
+    this.getUserData().subscribe((data: any) =>
+    {
+        console.log(JSON.stringify(data));
+    }
+    );
+  }
+
+
 }
