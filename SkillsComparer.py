@@ -2,19 +2,22 @@ class SkillsComparer:
 
     #List of strings representing tech words, helps filter out unecessary terms for getExtraJobSkills()
     skillDictionary = []
+    jobSkills = []
 
-    def __init__(self, dictionary):
+    def __init__(self, dictionary, jobUrl):
         self.skillDictionary = dictionary
+        scraper = JobScraper(jobUrl)
+        jobSkills = scraper.scrape()
 
     #Both arguments are expected to be lists of Strings
     # @return list of strings representing extra skills
-    def getExtraJobSkills(self, skillsList, jobSkills):
+    def getExtraJobSkills(self, skillsList):
         extra = [skill for skill in jobSkills if (skill in self.skillDictionary and not (skill in skillsList))]
         return extra
 
     #Both arguments are expected to be lists of Strings
     # @return list of strings representing extra skills
-    def getExtraSkillsListSkills(self, skillsList, jobSkills):
+    def getExtraSkillsListSkills(self, skillsList):
         extra = [skill for skill in skillsList if not skill in jobSkills]
         return extra
 
