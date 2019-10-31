@@ -108,6 +108,117 @@ textarea.input-form-text {
   font-size: 20px;
 }
 
+.modal-letter .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+}
+
+.modal-letter .modal-header {
+  border-bottom: none;
+  position: relative;
+  justify-content: center;
+}
+
+.modal-letter .close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.modal-letter h4 {
+  color: black;
+  text-align: center;
+  font-size: 26px;
+  margin-top: 0;
+}
+
+.modal-letter .modal-content {
+  color: black;
+  border-radius: 1px;
+  margin-bottom: 15px;
+  background: white;
+  border: 1px solid #f3f3f3;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 25px;
+}
+
+.modal-letter .form-group {
+  margin-bottom: 20px;
+}
+
+.modal-letter label {
+  font-weight: normal;
+  font-size: 13px;
+}
+
+.modal-letter .form-control {
+  min-height: 38px;
+  padding-left: 5px;
+  box-shadow: none !important;
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+}
+
+.modal-letter .form-control:focus {
+  border-color: #ccc;
+}
+
+.modal-letter .input-group-addon {
+  max-width: 42px;
+  text-align: center;
+  background: none;
+  border-width: 0 0 1px 0;
+  padding-left: 5px;
+  border-radius: 0;
+}
+
+.modal-letter .btn {
+  font-size: 16px;
+  font-weight: bold;
+  background: #743ad5;
+  border-radius: 3px;
+  border: none;
+  min-width: 140px;
+  outline: none !important;
+}
+
+.modal-letter .btn:hover,
+.modal-letter .btn:focus {
+  background: #A76DFF;
+}
+
+.modal-letter .modal-footer {
+  color: black;
+  border-color: #999;
+  text-align: center;
+  margin: 0 -25px -25px;
+  font-size: 16px;
+  justify-content: center;
+}
+
+.modal-letter a {
+  color: #38F9F1;
+  text-decoration: underline;
+}
+
+.modal-letter a:hover {
+  text-decoration: none;
+}
+
+.modal-letter a {
+  color: #743ad5;
+  text-decoration: none;
+}
+
+.modal-letter a:hover {
+  text-decoration: underline;
+}
+
+.modal-letter .fa {
+  font-size: 21px;
+}
+
 .input-form-btn {
   z-index: 2;
   position: relative;
