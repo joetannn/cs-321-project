@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-form',
@@ -14,6 +15,10 @@ export class UserFormComponent implements OnInit {
   duplicated = false;
   isEmpty = false;
 
+  //demo
+  //if in prod, change this!!
+  configUrl = 'http://localhost:8000/add?first_num=6&second_num=8'
+
   coverLetter =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
 
@@ -21,9 +26,13 @@ export class UserFormComponent implements OnInit {
 
   user = new User('', '', '', '', {}, '');
 
-  constructor() {}
+  constructor(private http: HttpClient) {
 
-  ngOnInit() {}
+  }
+
+  ngOnInit() {
+
+  }
 
   submitted = false;
 
@@ -31,6 +40,9 @@ export class UserFormComponent implements OnInit {
     this.submitted = true;
     this.user.skills = this.skillsObj;
     console.log(JSON.stringify(this.user)); // Here's the data in json
+    this.showMath();
+
+
   }
 
   addSkill() {
@@ -75,5 +87,18 @@ export class UserFormComponent implements OnInit {
 
   get diagnostic() {
     return JSON.stringify(this.user);
+  }
+
+  getMath()
+  {
+    return this.http.get(this.configUrl);
+  }
+
+  showMath()
+  {
+    this.getMath().subscribe((data: any) =>
+    {
+      console.log(JSON.stringify(data));
+    });
   }
 }
