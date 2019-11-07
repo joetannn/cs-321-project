@@ -15,6 +15,9 @@ export class UserFormComponent implements OnInit {
   duplicated = false;
   isEmpty = false;
 
+  skill_arr = [''];
+
+
   //demo
   //if in prod, change this!!
   testUrl = 'http://localhost:8000/add?first_num=6&second_num=8';
@@ -102,17 +105,16 @@ export class UserFormComponent implements OnInit {
 
   getUserData() {
     let params = new URLSearchParams();
-    //for(let key in this.user)
-    for (let skill in this.skills) {
-      //TODO: fix
-      //if (key == "skills")
-      //{
-      //params.set(key, this.user[key]);
-      // continue;
-      //}
-      //params.set(key, this.user[key]);
-      params.set('skill', skill);
+    for(let key in this.user)
+    {
+      params.set(key, this.user[key]);
     }
+
+    for (let skill in this.skills) {
+      this.skill_arr.push(this.skills[skill]);
+    }
+
+    params.set('skills', btoa(this.skill_arr.join('#')));
     console.log('PARAMS: ' + params.toString());
     return this.http.get(this.baseUrl + this.sendUrl + '?' + params.toString());
   }
