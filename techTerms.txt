@@ -1,0 +1,362 @@
+Beta Software
+Web Browser
+CGI
+Driver
+Freeware
+GUI
+Java
+Kernel
+Linux
+OCR
+OpenGL
+Operating System
+QuickTime
+Registry
+Shareware
+Unix
+Database
+Wizard
+Perl
+SQL
+C/C++
+Text Editor
+BIOS
+Template
+TWAIN
+Systray
+Win32
+Root
+FAT32
+Skin
+Runtime
+Plug-in
+Icon
+Codec
+Virus
+Mac OS
+Windows
+Cursor
+Malware
+Spyware
+Utility
+AIX
+Winsock
+Image Scaling
+Illegal Operation
+Readme
+File
+Folder
+Copy
+Paste
+Trojan Horse
+Raw Data
+Alert Box
+Dialog Box
+Debug
+Debugger
+iTunes
+Worm
+Desktop
+File Extension
+Install
+Installer
+Tiger
+Application
+System Software
+ODBC
+API
+OLE
+Dashboard
+OS X
+Windows XP
+MySQL
+DirectX
+Waveform
+Directory
+Shell
+Toolbar
+Menu Bar
+Cron
+Firmware
+Plain Text
+Rich Text
+Task Bar
+Ruby
+Frozen
+Flat File
+NetBIOS
+Direct3D
+Script
+Native File
+Process
+Clip Art
+Clipboard
+DBMS
+Word Wrap
+Tutorial
+EPS
+Metafile
+BASIC
+Lossy
+Lossless
+Widget
+Desktop Publishing
+Daemon
+Prebinding
+Spreadsheet
+Word Processor
+Horizontal Market Software
+Vertical Market Software
+RPC
+SNMP
+Algorithm
+Heuristic
+Source Code
+Gnutella
+SMB
+Samba
+Tooltip
+JRE
+RTE
+Batch Process
+Macro
+Keyboard Shortcut
+Terminal
+Soft Token
+Open Firmware
+Screenshot
+Snapshot
+Excel
+Software
+Service Pack
+Windows Vista
+DOS
+Window
+Scrolling
+Scroll Bar
+Array
+Data Type
+Control Panel
+Filename
+OOP
+Visual Basic
+Title Bar
+WordArt
+Commercial Software
+Zero Day Exploit
+Compile
+Compiler
+Backup
+Program
+Index
+Keylogger
+QBE
+Access
+ACL
+Abend
+Memory Leak
+Iteration
+Disk Image
+Mount
+Unmount
+PowerPoint
+Status Bar
+Command Prompt
+WYSIWYG
+Piracy
+Remote Desktop
+Contextual Menu
+Multitasking
+Multithreading
+Pop-Up
+GUID
+Open Source
+Pseudocode
+Spool
+Bug
+Add-on
+KDE
+KOffice
+Snippet
+Rosetta
+Path
+Cut
+Maximize
+Minimize
+Checksum
+Digital Signature
+Gamma Correction
+Recycle Bin
+Trash
+Subdirectory
+Golden Master
+Data Management
+Undo
+Cell
+Virtualization
+Finder
+Dock
+Android
+Reimage
+Drop Down Menu
+Windows 7
+Log File
+SDK
+Archive
+Rootkit
+Thumbnail
+Python
+GNU
+Export
+Import
+Favorites
+Interpreter
+Encoding
+Character Encoding
+Insertion Point
+Antivirus
+Motion Tween
+Ripping
+Parameter
+Function
+Interactive Video
+SaaS
+Middleware
+Default Program
+Executable File
+Deprecated
+File Format
+File Type
+File Association
+Compression
+File Compression
+Media Compression
+Class
+Method
+Query
+Start Menu
+Version Control
+Repository
+PUP
+PUM
+Drag and Drop
+Programming Language
+iOS
+Document
+DCIM
+Ribbon
+Clean Install
+Active Cell
+Sprite
+Word
+Office
+Runtime Error
+Syntax Error
+Logic Error
+Donationware
+Scareware
+MBR
+DLC
+App
+Public Domain
+Leopard
+Snow Leopard
+Lion
+Mountain Lion
+Windows 8
+Windows RT
+Text Box
+Bare Metal Restore
+Framework
+Opacity
+CamelCase
+WDDM
+Alpha Software
+Dual Boot
+WAMP
+MAMP
+BSOD
+Schema
+Bloatware
+Bash
+Grep
+Symbolic Link
+Virus Definition
+Register
+Mavericks
+Silent Install
+C#
+Crash
+Command Line Interface
+Assembly Language
+Assembler
+Spellcheck
+Extensible
+WIMP
+SDLC
+System Preferences
+Yosemite
+Adaptive Content
+FPS
+Tab
+Microkernel
+Proprietary Software
+Windows 10
+Struct
+Brownfield
+Greenfield
+Hotfix
+Typecasting
+Garbage Collection
+Loop
+Snapchat
+Emoji
+JVM
+Bootstrap
+Portable Software
+Sandboxing
+Relational Database
+Design Pattern
+NOS
+Cell Reference
+ISR
+JDBC
+High-Level Language
+Exception
+Lua
+Active Directory
+El Capitan
+Sierra
+Container
+UWP
+High Sierra
+RDBMS
+Autocorrect
+Bytecode
+XAML
+MVC
+Activation Key
+Processing
+Hash
+Flag
+Microsoft
+ANR
+Virtual Machine
+Hypervisor
+LFN
+Mojave
+Machine Language
+Minification
+Low-Level Language
+Object
+DevOps
+System Call
+Toolchain
+Dark Mode
+SharePoint
+SDS
+Wrapper
+Digital Asset
+ASO
+Anti-Aliasing
+PascalCase
