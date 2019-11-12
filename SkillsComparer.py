@@ -4,8 +4,17 @@ class SkillsComparer:
     skillDictionary = []
     jobSkills = []
 
-    def __init__(self, dictionary, jobUrl):
+    def __init__(self, dictionaryFile, jobUrl):
         self.skillDictionary = dictionary
+        dictionary = []
+        try:
+            techTerms = open(dictionaryFile,'r')
+            for line in techTerms:
+                dictionary.append(line)
+        except:
+            techTerms.close()
+        skillDictionary = dictionary
+
         scraper = JobScraper(jobUrl)
         jobSkills = scraper.scrape()
 
