@@ -3,7 +3,7 @@
 
 
 import hug
-
+import SkillsComparer
 
 @hug.response_middleware()
 def process_data(request, response, resource):
@@ -25,6 +25,11 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     #TODO: Add processing
     ret_val = {'firstname': firstName, 'lastName': lastName, 'position': position, 'link': link,
                'resume': resume}
+
+    comparer = SkillsComparer('techTerms.txt', link)
+    extraJobSkills = comparer.getExtraJobSkills(skills)
+    extraSkillsListSkills = comparer.getExtraSkillsListSkills(skills)
+
     # json is sending object object for this
     # ret_val['skills'] =  skills
     return ret_val
