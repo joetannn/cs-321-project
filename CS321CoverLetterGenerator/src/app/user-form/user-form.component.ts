@@ -8,12 +8,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
+  //test array
+  skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
+
   skills = [];
   skill = '';
   count = 0;
   skillsObj = {};
   duplicated = false;
   isEmpty = false;
+
+  skill_arr = [''];
 
   //demo
   //if in prod, change this!!
@@ -72,6 +77,11 @@ export class UserFormComponent implements OnInit {
     this.skill = '';
   }
 
+  //add to the skills list here but make sure to remove if user double clicks the checkbox
+  skillNotInResumeClicked(skill: String) {
+    console.log(skill);
+  }
+
   removeSkill(removeSkill: String) {
     this.skills.forEach(skill => {
       //console.log(skill);
@@ -102,17 +112,15 @@ export class UserFormComponent implements OnInit {
 
   getUserData() {
     let params = new URLSearchParams();
-    //for(let key in this.user)
-    for (let skill in this.skills) {
-      //TODO: fix
-      //if (key == "skills")
-      //{
-      //params.set(key, this.user[key]);
-      // continue;
-      //}
-      //params.set(key, this.user[key]);
-      params.set('skill', skill);
+    for (let key in this.user) {
+      params.set(key, this.user[key]);
     }
+
+    for (let skill in this.skills) {
+      this.skill_arr.push(this.skills[skill]);
+    }
+
+    params.set('skills', btoa(this.skill_arr.join('#')));
     console.log('PARAMS: ' + params.toString());
     return this.http.get(this.baseUrl + this.sendUrl + '?' + params.toString());
   }

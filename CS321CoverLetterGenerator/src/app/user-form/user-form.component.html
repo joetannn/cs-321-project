@@ -7,7 +7,7 @@
     <div id="stars2" style="border-radius: 100%"></div>
     <div id="stars3" style="border-radius: 100%"></div>
 
-    <div class="text ml-5 mr-5" data-text="Cover Letter Generator">Cover Letter Generator</div>
+    <div class="titleText ml-5 mr-5" data-text="Cover Letter Generator">Cover Letter Generator</div>
 
     <form class="input-form" #userForm="ngForm">
 
@@ -85,10 +85,15 @@
 
       <!-- Create Button -->
       <button type="submit" class="btn input-form-btn" [disabled]="!userForm.form.valid" (click)="onSubmit()"
+        data-toggle="modal" data-target=" #skillsNotInResumeModal">Create</button>
+      <!--
+        <button type="submit" class="btn input-form-btn" [disabled]="!userForm.form.valid" (click)="onSubmit()"
         data-toggle="modal" data-target=" #exampleModalLong">Create</button>
+      -->
+
     </form>
 
-    <!-- Modal -->
+    <!-- Cover Letter Modal -->
 
     <div class="modal-letter modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -111,6 +116,45 @@
         </div>
       </div>
     </div>
+
+    <!-- Skills Not In Resume Modal -->
+
+    <div class="modal-letter modal fade" id="skillsNotInResumeModal" tabindex="-1" role="dialog" aria-labelledby=""
+      aria-hidden="true">
+
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="skillsNotInResumeModal">Skills Not In Resume</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <p>Here is a list of skills that were found on the job posting but not in your resume. Would you like to
+            include any of these in your cover letter?</p>
+          <div class="modal-body">
+
+            <!-- skills list goes here -->
+            <div class="skillSelect" *ngFor="let skillNotInResume of skillsNotInResume">
+              <label class="skillNotInResumeItem">
+                <input type="checkbox" (click)="skillNotInResumeClicked(skillNotInResume)">
+                <i class="fas fa-check"></i>
+                <span class="text">{{skillNotInResume}}</span>
+              </label>
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Copy</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+
 
 </section>

@@ -3,6 +3,7 @@
 
 
 import hug
+import base64
 import SkillsComparer
 
 @hug.response_middleware()
@@ -20,19 +21,27 @@ def do_add(first_num: hug.types.number, second_num: hug.types.number):
     return {'Final Result:': first_num + second_num}
 
 @hug.get('/send')
-def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: hug.types.text, link: hug.types.text = None, skills: hug.types.delimited_list=None, resume: hug.types.text=None):
+def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: hug.types.text, link: hug.types.text, skills: hug.types.text, resume: hug.types.text):
 
-    #TODO: Add processing
-    ret_val = {'firstname': firstName, 'lastName': lastName, 'position': position, 'link': link,
-               'resume': resume}
+    #debug
+    values = {'firstname': firstName, 'lastName': lastName, 'position': position, 'link': link,
+               'resume': resume, 'skills': base64.b64decode(skills)}
 
-    comparer = SkillsComparer('techTerms.txt', link)
-    extraJobSkills = comparer.getExtraJobSkills(skills)
-    extraSkillsListSkills = comparer.getExtraSkillsListSkills(skills)
+    api_firstName = firstName
+    api_lastName = lastName
+    api_position = position
+    api_link = link
+    #list of skills is array
+    api_skills = base64.b64decode(skills).decode('utf-8')
+    print(api_skills)
+    api_resume = resume
+    
+    comparer = SkillsComparer('techTerms.txt', api_link)
+    extraJobSkills = comparer.getExtraJobSkills(api_skills)
+    extraSkillsListSkills = comparer.getExtraSkillsListSkills(api_skills)
 
-    # json is sending object object for this
-    # ret_val['skills'] =  skills
-    return ret_val
+
+    return values
 
 
 def buildCoverLetter():
