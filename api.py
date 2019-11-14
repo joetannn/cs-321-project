@@ -29,24 +29,43 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     values = {'firstname': firstName, 'lastName': lastName, 'position': position, 'link': link,
                'resume': resume, 'skills': base64.b64decode(skills)}
 
+    skills_class = SkillsComparer()
+
     api_firstName = firstName
     api_lastName = lastName
     api_position = position
     api_link = link
     #list of skills is array
     api_skills = base64.b64decode(skills).decode('utf-8').split("#")
-    print("API SKILLS: " + str(api_skills))
-    api_resume = resume
+    api_skills.pop(0)
 
-    skills_class = SkillsComparer()
-    comparer = skills_class.scrape_link
-    comparer(api_link)
+    #Strip duplicates
+    api_skills = list(set(api_skills))
+    if api_skills[0] == '':
+        api_skills.pop(0)
+    print("SKILLS FROM SKILLS LIST: " + str(api_skills))
+
+    # get all the resume stuff, remove duplicates
+    api_resume = resume.strip()
+    api_resume = list(set(api_resume.split()))
+    print("SKILLS FROM RESUME: " + str(api_resume))
+    api_resume = skills_class.returnTechTerms(api_resume)
+    print("SKILLS FROM RESUME IN SKILLS LIST: " + str(api_resume))
+
+    print("Extending resume to skills list")
+    api_skills.extend(api_resume)
+    print("FINAL SKILLS LIST: " + str(api_skills))
+
+
+    scrape_method = skills_class.scrape_link
+    scrape_method(api_link)
+
     extra_skill_call = skills_class.getExtraJobSkills
     extraJobSkills = extra_skill_call(api_skills)
-    print("EXTRA JOB SKILLS: " + str(extraJobSkills))
+    print("SKILLS FROM Job NOT IN SKILLS_LIST: " + str(extraJobSkills))
     extra_skill_list_call_call = skills_class.getExtraSkillsListSkills
     extraSkillsListSkills = extra_skill_list_call_call(api_skills)
-    print("EXTRA SKILL LIST SKILLS: " + str(extraSkillsListSkills))
+    print("SKILLS FROM SKILLS_LIST NOT IN JOB: " + str(extraSkillsListSkills))
 
     return values
 

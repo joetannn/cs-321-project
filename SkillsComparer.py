@@ -11,14 +11,25 @@ class SkillsComparer:
         try:
             techTerms = open('techTerms.txt','r')
             for line in techTerms:
-                dictionary.append(line)
+                dictionary.append(line.rstrip())
         except:
             techTerms.close()
         self.skillDictionary = dictionary
+        # debug if necessary
+        # print("SKILL DICTIONARY: " + str(self.skillDictionary))
 
     def scrape_link(self, jobUrl):
         scraper = JobScraper(jobUrl)
         self.jobSkills = scraper.scrape()
+        print("SCRAPED SKILLS: " + str(self.jobSkills))
+
+    def returnTechTerms(self, resume_list):
+        answer_list = []
+        for i in resume_list:
+            if i in self.skillDictionary:
+                answer_list.append(i)
+
+        return answer_list
 
     #Both arguments are expected to be lists of Strings
     # @return list of strings representing extra skills
