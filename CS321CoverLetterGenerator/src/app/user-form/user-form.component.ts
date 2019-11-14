@@ -8,6 +8,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
+  //test array
+  skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
+
   skills = [];
   skill = '';
   count = 0;
@@ -16,7 +19,6 @@ export class UserFormComponent implements OnInit {
   isEmpty = false;
 
   skill_arr = [''];
-
 
   //demo
   //if in prod, change this!!
@@ -105,8 +107,7 @@ export class UserFormComponent implements OnInit {
 
   getUserData() {
     let params = new URLSearchParams();
-    for(let key in this.user)
-    {
+    for (let key in this.user) {
       params.set(key, this.user[key]);
     }
 
