@@ -131,3 +131,17 @@ export class UserFormComponent implements OnInit {
     });
   }
 }
+
+//******************************  Cover Letter Template  **************************************
+
+// [Current Date]
+
+// [To Whom It May Concern / Recruiter or Company Name],
+// I am applying for the position of [Insert Position Desired] for [Insert Company Name] as seen on your website.
+// Over the course of my college career, I have created [insert class project] [within a group], [insert class project] and have studied [insert class/topic].
+// I am familiar with [skill 1], [skill 2]. [skill 3]
+// [Certifications if applicable and expected graduation date with degree and school name.]
+// I am confident that I can offer [requirement 1], [requirement 2], and [requirement 3].  I have attached my resume for more details.  Feel free to call me at [phone number] or email me at [email address] to arrange an interview.  Thank you for your time – I look forward to hearing from you.
+// Sincerely,
+
+// [Insert Name]
