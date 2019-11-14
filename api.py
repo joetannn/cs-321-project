@@ -35,6 +35,9 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     api_link = link
     #list of skills is array
     api_skills = base64.b64decode(skills).decode('utf-8').split("#")
+    api_skills.pop(0)
+    #Strip duplicates
+    api_skills = list(set(api_skills))
     print("API SKILLS: " + str(api_skills))
     api_resume = resume
 
