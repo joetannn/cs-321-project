@@ -360,3 +360,7 @@ Digital Asset
 ASO
 Anti-Aliasing
 PascalCase
+Machine Learning
+ML
+AI
+

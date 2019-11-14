@@ -55,14 +55,21 @@ class JobScraper:
                 else:
                     curTag = curTag + str(char)
         
-        #TODO get rid of duplicate words?
+        #should remove duplicates
         return allWords
 
 #Arbitrary job posting for testing
 url = 'https://jobs.raytheon.com/job/colorado-springs/mission-assurance-center-system-support-engineer/4679/13244094'
 scraper = JobScraper(url)
 allWords = scraper.scrape()
+
+#strip extras
 for word in allWords:
-    print(str(word) + "\n")
+    if word == '/r' or word == '/n' or word == '':
+        allWords.remove(word)
+
+for word in allWords:
+    print("RAYTHEON POST:" + str(word))
+    pass
 
 
