@@ -126,17 +126,18 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="skillsNotInResumeModal">Skills Not In Resume</h5>
-            <!-- <h3>Skills not found in your resume but in job posting. Would you like to include any of these?</h3> -->
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <p>Here is a list of skills that were found on the job posting but not in your resume. Would you like to
+            include any of these in your cover letter?</p>
           <div class="modal-body">
 
             <!-- skills list goes here -->
             <div class="skillSelect" *ngFor="let skillNotInResume of skillsNotInResume">
               <label class="skillNotInResumeItem">
-                <input type="checkbox">
+                <input type="checkbox" (click)="skillNotInResumeClicked(skillNotInResume)">
                 <i class="fas fa-check"></i>
                 <span class="text">{{skillNotInResume}}</span>
               </label>

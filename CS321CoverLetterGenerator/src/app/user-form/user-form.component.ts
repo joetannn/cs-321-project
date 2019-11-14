@@ -77,6 +77,11 @@ export class UserFormComponent implements OnInit {
     this.skill = '';
   }
 
+  //add to the skills list here but make sure to remove if user double clicks the checkbox
+  skillNotInResumeClicked(skill: String) {
+    console.log(skill);
+  }
+
   removeSkill(removeSkill: String) {
     this.skills.forEach(skill => {
       //console.log(skill);
