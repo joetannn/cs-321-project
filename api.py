@@ -4,7 +4,9 @@
 
 import hug
 import base64
-import SkillsComparer
+
+from SkillsComparer import SkillsComparer
+
 
 @hug.response_middleware()
 def process_data(request, response, resource):
@@ -32,14 +34,19 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     api_position = position
     api_link = link
     #list of skills is array
-    api_skills = base64.b64decode(skills).decode('utf-8')
-    print(api_skills)
+    api_skills = base64.b64decode(skills).decode('utf-8').split("#")
+    print("API SKILLS: " + str(api_skills))
     api_resume = resume
-    
-    comparer = SkillsComparer('techTerms.txt', api_link)
-    extraJobSkills = comparer.getExtraJobSkills(api_skills)
-    extraSkillsListSkills = comparer.getExtraSkillsListSkills(api_skills)
 
+    skills_class = SkillsComparer()
+    comparer = skills_class.scrape_link
+    comparer(api_link)
+    extra_skill_call = skills_class.getExtraJobSkills
+    extraJobSkills = extra_skill_call(api_skills)
+    print("EXTRA JOB SKILLS: " + str(extraJobSkills))
+    extra_skill_list_call_call = skills_class.getExtraSkillsListSkills
+    extraSkillsListSkills = extra_skill_list_call_call(api_skills)
+    print("EXTRA SKILL LIST SKILLS: " + str(extraSkillsListSkills))
 
     return values
 
