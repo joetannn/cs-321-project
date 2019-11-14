@@ -8,12 +8,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
+  //test array
+  skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
+
   skills = [];
   skill = '';
   count = 0;
   skillsObj = {};
   duplicated = false;
   isEmpty = false;
+
+  skill_arr = [''];
 
   //demo
   //if in prod, change this!!
@@ -72,6 +77,11 @@ export class UserFormComponent implements OnInit {
     this.skill = '';
   }
 
+  //add to the skills list here but make sure to remove if user double clicks the checkbox
+  skillNotInResumeClicked(skill: String) {
+    console.log(skill);
+  }
+
   removeSkill(removeSkill: String) {
     this.skills.forEach(skill => {
       //console.log(skill);
@@ -102,17 +112,15 @@ export class UserFormComponent implements OnInit {
 
   getUserData() {
     let params = new URLSearchParams();
-    //for(let key in this.user)
-    for (let skill in this.skills) {
-      //TODO: fix
-      //if (key == "skills")
-      //{
-      //params.set(key, this.user[key]);
-      // continue;
-      //}
-      //params.set(key, this.user[key]);
-      params.set('skill', skill);
+    for (let key in this.user) {
+      params.set(key, this.user[key]);
     }
+
+    for (let skill in this.skills) {
+      this.skill_arr.push(this.skills[skill]);
+    }
+
+    params.set('skills', btoa(this.skill_arr.join('#')));
     console.log('PARAMS: ' + params.toString());
     return this.http.get(this.baseUrl + this.sendUrl + '?' + params.toString());
   }
@@ -123,3 +131,17 @@ export class UserFormComponent implements OnInit {
     });
   }
 }
+
+//******************************  Cover Letter Template  **************************************
+
+// [Current Date]
+
+// [To Whom It May Concern / Recruiter or Company Name],
+// I am applying for the position of [Insert Position Desired] for [Insert Company Name] as seen on your website.
+// Over the course of my college career, I have created [insert class project] [within a group], [insert class project] and have studied [insert class/topic].
+// I am familiar with [skill 1], [skill 2]. [skill 3]
+// [Certifications if applicable and expected graduation date with degree and school name.]
+// I am confident that I can offer [requirement 1], [requirement 2], and [requirement 3].  I have attached my resume for more details.  Feel free to call me at [phone number] or email me at [email address] to arrange an interview.  Thank you for your time – I look forward to hearing from you.
+// Sincerely,
+
+// [Insert Name]

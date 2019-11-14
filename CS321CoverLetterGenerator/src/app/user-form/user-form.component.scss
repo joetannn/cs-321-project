@@ -4,7 +4,7 @@ body {
   min-width: 100%;
 }
 
-.text {
+.titleText {
   color: #fff;
   border-style: solid;
 
@@ -16,6 +16,10 @@ body {
   font-size: 60px;
   text-align: center;
   letter-spacing: 14px;
+}
+
+.text {
+  font-size: 18px;
 }
 
 .ng-valid[required],
@@ -108,22 +112,44 @@ textarea.input-form-text {
   font-size: 20px;
 }
 
-.modal-letter .modal-content {
-  padding: 20px;
-  border-radius: 5px;
-  border: none;
+.skillNotInResumeItem {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  cursor: pointer;
+}
+
+.skillNotInResumeItem input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.skillNotInResumeItem i {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  text-align: center;
+  line-height: 36px;
+  font-size: 14px;
+  margin-right: 14px;
+  color: transparent;
+}
+
+.skillNotInResumeItem input:checked~i {
+  color: #743ad5;
+}
+
+.skillNotInResumeItem input:checked~.text {
+  color: #743ad5;
 }
 
 .modal-letter .modal-header {
   border-bottom: none;
   position: relative;
   justify-content: center;
-}
-
-.modal-letter .close {
-  position: absolute;
-  top: -10px;
-  right: -10px;
+  text-transform: uppercase;
 }
 
 .modal-letter h4 {
@@ -138,46 +164,18 @@ textarea.input-form-text {
   border-radius: 1px;
   margin-bottom: 15px;
   background: white;
-  border: 1px solid #f3f3f3;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px 4px #743ad5;
   padding: 25px;
 }
 
-.modal-letter .form-group {
-  margin-bottom: 20px;
-}
-
 .modal-letter label {
-  font-weight: normal;
   font-size: 13px;
-}
-
-.modal-letter .form-control {
-  min-height: 38px;
-  padding-left: 5px;
-  box-shadow: none !important;
-  border-width: 0 0 1px 0;
-  border-radius: 0;
-}
-
-.modal-letter .form-control:focus {
-  border-color: #ccc;
-}
-
-.modal-letter .input-group-addon {
-  max-width: 42px;
-  text-align: center;
-  background: none;
-  border-width: 0 0 1px 0;
-  padding-left: 5px;
-  border-radius: 0;
 }
 
 .modal-letter .btn {
   font-size: 16px;
   font-weight: bold;
   background: #743ad5;
-  border-radius: 3px;
   border: none;
   min-width: 140px;
   outline: none !important;
@@ -189,34 +187,8 @@ textarea.input-form-text {
 }
 
 .modal-letter .modal-footer {
-  color: black;
   border-color: #999;
-  text-align: center;
-  margin: 0 -25px -25px;
-  font-size: 16px;
   justify-content: center;
-}
-
-.modal-letter a {
-  color: #38F9F1;
-  text-decoration: underline;
-}
-
-.modal-letter a:hover {
-  text-decoration: none;
-}
-
-.modal-letter a {
-  color: #743ad5;
-  text-decoration: none;
-}
-
-.modal-letter a:hover {
-  text-decoration: underline;
-}
-
-.modal-letter .fa {
-  font-size: 21px;
 }
 
 .input-form-btn {
