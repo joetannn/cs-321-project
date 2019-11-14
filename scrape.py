@@ -9,7 +9,7 @@ class JobScraper:
     # Scrapes this JobScraper's url and returns a list of all words
     # that are not part of html tags
     def scrape(self):
-        r = requests.get(url)
+        r = requests.get(self.url)
         if(r.status_code != 200):
             print('Unable to access site')
 
@@ -59,17 +59,17 @@ class JobScraper:
         return allWords
 
 #Arbitrary job posting for testing
-url = 'https://jobs.raytheon.com/job/colorado-springs/mission-assurance-center-system-support-engineer/4679/13244094'
-scraper = JobScraper(url)
-allWords = scraper.scrape()
+#url = 'https://jobs.raytheon.com/job/colorado-springs/mission-assurance-center-system-support-engineer/4679/13244094'
+#scraper = JobScraper(url)
+#allWords = scraper.scrape()
 
 #strip extras
-for word in allWords:
-    if word == '/r' or word == '/n' or word == '':
-        allWords.remove(word)
-
-for word in allWords:
-    print("RAYTHEON POST:" + str(word))
-    pass
+#for word in allWords:
+#    if word == '/r' or word == '/n' or word == '':
+#        allWords.remove(word)
+#
+#for word in allWords:
+    #print("RAYTHEON POST:" + str(word))
+  #  pass
 
 

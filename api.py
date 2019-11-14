@@ -57,8 +57,9 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     print("FINAL SKILLS LIST: " + str(api_skills))
 
 
-    comparer = skills_class.scrape_link
-    comparer(api_link)
+    scrape_method = skills_class.scrape_link
+    scrape_method(api_link)
+
     extra_skill_call = skills_class.getExtraJobSkills
     extraJobSkills = extra_skill_call(api_skills)
     print("SKILLS FROM Job NOT IN SKILLS_LIST: " + str(extraJobSkills))
