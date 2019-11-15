@@ -19,6 +19,13 @@ export class UserFormComponent implements OnInit {
   isEmpty = false;
 
   skill_arr = [''];
+  in_skills_in_job = ['']
+  not_in_skills_in_job = ['']
+  not_in_job_in_skills = ['']
+
+  sj = ''
+  snj = ''
+  nsj = ''
 
   //demo
   //if in prod, change this!!
@@ -43,7 +50,7 @@ export class UserFormComponent implements OnInit {
     this.submitted = true;
     this.user.skills = this.skillsObj;
     console.log(JSON.stringify(this.user)); // Here's the data in json
-    console.log('Running math test');
+    console.log('Running math connection test....');
     //if this fails, there is no connectivity
     this.showMath();
     //
@@ -120,7 +127,7 @@ export class UserFormComponent implements OnInit {
 
   showMath() {
     this.getMath().subscribe((data: any) => {
-      console.log('SHOULD EQUAL 14: ' + JSON.stringify(data));
+      console.log('Connection Test: ' + JSON.stringify(data));
     });
   }
 
@@ -135,13 +142,30 @@ export class UserFormComponent implements OnInit {
     }
 
     params.set('skills', btoa(this.skill_arr.join('|')));
-    console.log('PARAMS: ' + params.toString());
+    console.log('SENDING PARAMS: ' + params.toString());
     return this.http.get(this.baseUrl + this.sendUrl + '?' + params.toString());
   }
 
   sendUserData() {
     this.getUserData().subscribe((data: any) => {
       console.log("RETURN DATA: " + JSON.stringify(data));
+      this.sj = data['inSkllsinJob']
+      this.nsj = data['notInSkillsinJob']
+      this.snj = data['notInJobInSkills']
+      if (this.sj.length != 0)
+      {
+        this.in_skills_in_job = this.sj.split("|");
+      }
+      if (this.nsj.length != 0)
+      {
+        this.not_in_skills_in_job = this.nsj.split("|");
+      }
+      if (this.snj.length != 0)
+      {
+        this.not_in_job_in_skills = this.snj.split("|")
+      }
+
+
     });
   }
 }
