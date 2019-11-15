@@ -36,7 +36,7 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     api_position = position
     api_link = link
     #list of skills is array
-    api_skills = base64.b64decode(skills).decode('utf-8').split("#")
+    api_skills = base64.b64decode(skills).decode('utf-8').split("|")
     api_skills.pop(0)
 
     #Strip duplicates
@@ -67,7 +67,10 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     extraSkillsListSkills = extra_skill_list_call_call(api_skills)
     print("SKILLS FROM SKILLS_LIST NOT IN JOB: " + str(extraSkillsListSkills))
 
-    return values
+    notInSkillsInJob = "|".join(extraJobSkills)
+    notInJobInSkills = "|".join(extraSkillsListSkills)
+    inSkillsinJob = ""
+    return {'inSkillsinJob':inSkillsinJob,'notInSkillsinJob': notInSkillsInJob, 'notInJobInSkills': notInJobInSkills}
 
 
 def buildCoverLetter():
