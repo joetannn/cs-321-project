@@ -21,7 +21,7 @@ class SkillsComparer:
     def scrape_link(self, jobUrl):
         scraper = JobScraper(jobUrl)
         self.jobSkills = scraper.scrape()
-        print("SCRAPED SKILLS: " + str(self.jobSkills))
+        #print("SCRAPED SKILLS: " + str(self.jobSkills))
 
     def returnTechTerms(self, resume_list):
         answer_list = []
@@ -30,6 +30,11 @@ class SkillsComparer:
                 answer_list.append(i)
 
         return answer_list
+
+    def getSimilarSkills(self, skillsList):
+        validJobSkills = [skill for skill in self.jobSkills if skill in self.skillDictionary]
+        similar = [skill for skill in validJobSkills if skill in skillsList]
+        return similar
 
     #Both arguments are expected to be lists of Strings
     # @return list of strings representing extra skills
@@ -43,10 +48,11 @@ class SkillsComparer:
         extra = [skill for skill in skillsList if not skill in self.jobSkills]
         return extra
 
-#comp = SkillsComparer([10, 20, 30, 40, 50])
-#skillsList = [10, 15, 18, 21, 30, 25, 40]
-#jobSkills = [10, 20, 30, 40, 50, 55, 25, 18, 17]
-#extra = comp.getExtraJobSkills(skillsList, jobSkills)
-#print(extra)
-#extra = comp.getExtraSkillsListSkills(skillsList, jobSkills)
+#comp = SkillsComparer()
+#skillsList = ['Java', 'C++', 'Sleeping']
+#url = 'https://jobs.raytheon.com/job/dulles/software-engineer-i/4679/14033015?utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic'
+#comp.scrape_link(url)
+#similar = comp.getSimilarSkills(skillsList)
+#print(similar)
+#extra = comp.getExtraSkillsListSkills(skillsList)
 #print(extra)
