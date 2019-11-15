@@ -364,4 +364,6 @@ PascalCase
 Machine Learning
 ML
 AI
+TS/SCI
+Agile
 
