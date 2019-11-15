@@ -54,8 +54,9 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
 
     print("Extending resume to skills list")
     api_skills.extend(api_resume)
-    print("FINAL SKILLS LIST: " + str(api_skills))
 
+
+    print("FINAL SKILLS LIST: " + str(api_skills))
 
     scrape_method = skills_class.scrape_link
     scrape_method(api_link)

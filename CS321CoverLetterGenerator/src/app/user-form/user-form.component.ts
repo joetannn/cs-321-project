@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
+  //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent implements OnInit {
   //test array
@@ -18,12 +19,15 @@ export class UserFormComponent implements OnInit {
   duplicated = false;
   isEmpty = false;
 
+
   skill_arr = [''];
 
   //returned values
   skillsInBoth = [''];
   skillsNotInResume = [''];
   skillsInResume = [];
+
+  displaySkillsInResume = false;
 
   sj = '';
   snj = '';
@@ -167,7 +171,13 @@ export class UserFormComponent implements OnInit {
       if (this.snj != '') {
         this.skillsInResume = this.snj.split('|');
       }
-      console.log("LENGTH OF SKILLS: " + this.skillsInResume.length);
+
+      if (this.skillsInResume.length > 0)
+      {
+        console.log("LENGTH OF SKILLS: " + this.skillsInResume.length);
+        this.displaySkillsInResume = true;
+      }
+      //this.cdRef.markForCheck();
       //console.log("FORMATTED RETURN LIST: " + this.in_skills_in_job.toString() + this.not_in_skills_in_job.toString() + this.not_in_job_in_skills.toString());
     });
   }
