@@ -177,17 +177,6 @@ export class UserFormComponent implements OnInit {
       if (this.snj != '') {
         this.skillsInResume = this.snj.split('|');
       }
-
-      if (this.skillsInResume.length > 0)
-      {
-        console.log("LENGTH OF SKILLS IN RESUME: " + this.skillsInResume.length);
-        this.displaySkillsInResume = true;
-      }
-      if (this.skillsNotInResume.length > 0)
-      {
-        console.log("LENGTH OF SKILLS NOT IN RESUME: " + this.skillsNotInResume.length);
-        this.displaySkillsNotInResume = true;
-      }
       //this.cdRef.markForCheck();
       //console.log("FORMATTED RETURN LIST: " + this.in_skills_in_job.toString() + this.not_in_skills_in_job.toString() + this.not_in_job_in_skills.toString());
     });

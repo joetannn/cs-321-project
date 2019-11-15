@@ -69,9 +69,15 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     print("SKILLS FROM SKILLS_LIST NOT IN JOB: " + str(extraSkillsListSkills))
 
     notInSkillsInJob = "|".join(list(set(extraJobSkills)))
+    if notInSkillsInJob != "" and "|" in notInSkillsInJob:
+        notInSkillsInJob = notInSkillsInJob[1:]
     notInJobInSkills = "|".join(extraSkillsListSkills)
+    if notInJobInSkills != "" and "|" in notInJobInSkills:
+        notInJobInSkills = notInJobInSkills[1:]
     inSkillsinJob = skills_class.getSimilarSkills(api_skills)
     inSkillsinJob = "|".join(list(set(inSkillsinJob)))
+    if inSkillsinJob != "" and "|" in inSkillsinJob:
+        inSkillsinJob = inSkillsinJob[1:]
     print("SKILLS IN JOB AND LIST:" + inSkillsinJob)
     return {'1':inSkillsinJob,'2': notInSkillsInJob, '3': notInJobInSkills}
     #return {'1':'abc|def','2':'yuuu2','3':'skillsboi|a|b'}
