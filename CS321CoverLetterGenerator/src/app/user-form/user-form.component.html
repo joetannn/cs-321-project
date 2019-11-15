@@ -33,16 +33,12 @@
         Desired position is required
       </div>
 
-      <!-- Link Input -->
+      <!-- Desired Position Input -->
       <input type="text" class="input-form-text" id="link" required [(ngModel)]="user.link" name="link" #link="ngModel"
         placeholder="Link to job post">
       <div [hidden]="link.valid || link.pristine" class="alert alert-danger">
         Link to job post is required
       </div>
-      <div [hidden]="(invalidLink)" class="alert alert-danger">
-        Link is in the incorrect format
-      </div>
-
 
       <!-- Add Skills -->
       <div class="input-group mb-3">
@@ -89,9 +85,7 @@
 
       <!-- Create Button -->
       <button type="submit" class="btn input-form-btn" [disabled]="!userForm.form.valid" (click)="onSubmit()"
-        data-toggle="modal">Create</button>
-      <!-- <button type="submit" class="btn input-form-btn" [disabled]="!userForm.form.valid" (click)="onSubmit()"
-        data-toggle="modal" data-target=" #skillsNotInResumeModal">Create</button> -->
+        data-toggle="modal" data-target=" #skillsNotInResumeModal">Create</button>
       <!--
         <button type="submit" class="btn input-form-btn" [disabled]="!userForm.form.valid" (click)="onSubmit()"
         data-toggle="modal" data-target=" #coverLetterModal">Create</button>
@@ -125,8 +119,8 @@
 
     <!-- Skills Not In Resume Modal -->
 
-    <div *ngIf="skillsInResume.length != 0" class="modal-letter modal fade" id="skillsNotInResumeModal" tabindex="-1"
-      role="dialog" aria-labelledby="" aria-hidden="true">
+    <div *ngIf = "this.skillsInResume.length > 0"class="modal-letter modal fade" id="skillsNotInResumeModal" tabindex="-1" role="dialog" aria-labelledby=""
+      aria-hidden="true">
 
       <div class="modal-dialog" role="document">
         <div class="modal-content">

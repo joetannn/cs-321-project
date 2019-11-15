@@ -23,7 +23,7 @@ export class UserFormComponent implements OnInit {
   //returned values
   skillsInBoth = [''];
   skillsNotInResume = [''];
-  skillsInResume = [''];
+  skillsInResume = [];
 
   sj = '';
   snj = '';
@@ -167,7 +167,7 @@ export class UserFormComponent implements OnInit {
       if (this.snj != '') {
         this.skillsInResume = this.snj.split('|');
       }
-
+      console.log("LENGTH OF SKILLS: " + this.skillsInResume.length);
       //console.log("FORMATTED RETURN LIST: " + this.in_skills_in_job.toString() + this.not_in_skills_in_job.toString() + this.not_in_job_in_skills.toString());
     });
   }
