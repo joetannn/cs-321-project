@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserFormComponent implements OnInit {
   //test array
-  skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
+  skillsNotInResume = [];
 
   skills = [];
   skill = '';
@@ -20,13 +20,13 @@ export class UserFormComponent implements OnInit {
   invalidLink = true;
 
   skill_arr = [''];
-  in_skills_in_job = ['']
-  not_in_skills_in_job = ['']
-  not_in_job_in_skills = ['']
+  in_skills_in_job = [''];
+  not_in_skills_in_job = [''];
+  not_in_job_in_skills = [''];
 
-  sj = ''
-  snj = ''
-  nsj = ''
+  sj = '';
+  snj = '';
+  nsj = '';
 
   //demo
   //if in prod, change this!!
@@ -155,24 +155,19 @@ export class UserFormComponent implements OnInit {
 
   sendUserData() {
     this.getUserData().subscribe((data: any) => {
-      console.log("RETURN DATA: " + JSON.stringify(data));
-      this.sj = data['inSkllsinJob']
-      this.nsj = data['notInSkillsinJob']
-      this.snj = data['notInJobInSkills']
-      if (this.sj.length != 0)
-      {
-        this.in_skills_in_job = this.sj.split("|");
+      console.log('RETURN DATA: ' + JSON.stringify(data));
+      this.sj = data['inSkllsinJob'];
+      this.nsj = data['notInSkillsinJob'];
+      this.snj = data['notInJobInSkills'];
+      if (this.sj.length != 0) {
+        this.in_skills_in_job = this.sj.split('|');
       }
-      if (this.nsj.length != 0)
-      {
-        this.not_in_skills_in_job = this.nsj.split("|");
+      if (this.nsj.length != 0) {
+        this.not_in_skills_in_job = this.nsj.split('|');
       }
-      if (this.snj.length != 0)
-      {
-        this.not_in_job_in_skills = this.snj.split("|")
+      if (this.snj.length != 0) {
+        this.not_in_job_in_skills = this.snj.split('|');
       }
-
-
     });
   }
 }
