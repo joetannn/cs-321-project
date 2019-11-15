@@ -134,14 +134,14 @@ export class UserFormComponent implements OnInit {
       this.skill_arr.push(this.skills[skill]);
     }
 
-    params.set('skills', btoa(this.skill_arr.join('#')));
+    params.set('skills', btoa(this.skill_arr.join('|')));
     console.log('PARAMS: ' + params.toString());
     return this.http.get(this.baseUrl + this.sendUrl + '?' + params.toString());
   }
 
   sendUserData() {
     this.getUserData().subscribe((data: any) => {
-      console.log(JSON.stringify(data));
+      console.log("RETURN DATA: " + JSON.stringify(data));
     });
   }
 }

@@ -21,7 +21,7 @@ class SkillsComparer:
     def scrape_link(self, jobUrl):
         scraper = JobScraper(jobUrl)
         self.jobSkills = scraper.scrape()
-        print("SCRAPED SKILLS: " + str(self.jobSkills))
+        #print("SCRAPED SKILLS: " + str(self.jobSkills))
 
     def returnTechTerms(self, resume_list):
         answer_list = []
