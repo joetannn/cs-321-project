@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserFormComponent implements OnInit {
   //test array
-  skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
+  //skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
 
   skills = [];
   skill = '';
@@ -19,6 +19,15 @@ export class UserFormComponent implements OnInit {
   isEmpty = false;
 
   skill_arr = [''];
+
+  //returned values
+  skillsInBoth = [''];
+  skillsNotInResume = [''];
+  skillsInResume = [];
+
+  sj = '';
+  snj = '';
+  nsj = '';
 
   //demo
   //if in prod, change this!!
@@ -43,11 +52,28 @@ export class UserFormComponent implements OnInit {
     this.submitted = true;
     this.user.skills = this.skillsObj;
     console.log(JSON.stringify(this.user)); // Here's the data in json
-    console.log('Running math test');
+    console.log('Running math connection test....');
     //if this fails, there is no connectivity
     this.showMath();
     //
-    this.sendUserData();
+    if (this.validURL()) {
+      this.sendUserData();
+    } else {
+      console.log('Incorrect link');
+    }
+  }
+
+  validURL() {
+    var pattern = new RegExp(
+      '^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$',
+      'i'
+    ); // fragment locator
+    return !!pattern.test(this.user.link);
   }
 
   addSkill() {
@@ -106,7 +132,7 @@ export class UserFormComponent implements OnInit {
 
   showMath() {
     this.getMath().subscribe((data: any) => {
-      console.log('SHOULD EQUAL 14: ' + JSON.stringify(data));
+      console.log('Connection Test: ' + JSON.stringify(data));
     });
   }
 
@@ -121,13 +147,28 @@ export class UserFormComponent implements OnInit {
     }
 
     params.set('skills', btoa(this.skill_arr.join('|')));
-    console.log('PARAMS: ' + params.toString());
+    console.log('SENDING PARAMS: ' + params.toString());
     return this.http.get(this.baseUrl + this.sendUrl + '?' + params.toString());
   }
 
   sendUserData() {
     this.getUserData().subscribe((data: any) => {
-      console.log("RETURN DATA: " + JSON.stringify(data));
+      console.log('RETURN DATA: ' + JSON.stringify(data));
+      this.sj = data['1'];
+      this.nsj = data['2'];
+      this.snj = data['3'];
+      //console.log("STRING DATA: " + this.sj + "||" + this.nsj + "||" + this.snj);
+      if (this.sj != '') {
+        this.skillsInBoth = this.sj.split('|');
+      }
+      if (this.nsj != '') {
+        this.skillsNotInResume = this.nsj.split('|');
+      }
+      if (this.snj != '') {
+        this.skillsInResume = this.snj.split('|');
+      }
+      console.log("LENGTH OF SKILLS: " + this.skillsInResume.length);
+      //console.log("FORMATTED RETURN LIST: " + this.in_skills_in_job.toString() + this.not_in_skills_in_job.toString() + this.not_in_job_in_skills.toString());
     });
   }
 }
