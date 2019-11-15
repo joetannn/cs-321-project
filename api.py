@@ -70,7 +70,8 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     notInSkillsInJob = "|".join(extraJobSkills)
     notInJobInSkills = "|".join(extraSkillsListSkills)
     inSkillsinJob = ""
-    return {'inSkillsinJob':inSkillsinJob,'notInSkillsinJob': notInSkillsInJob, 'notInJobInSkills': notInJobInSkills}
+    return {'1':inSkillsinJob,'2': notInSkillsInJob, '3': notInJobInSkills}
+    #return {'1':'abc|def','2':'yuuu2','3':'skillsboi|a|b'}
 
 
 def buildCoverLetter():
