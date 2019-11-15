@@ -33,12 +33,16 @@
         Desired position is required
       </div>
 
-      <!-- Desired Position Input -->
+      <!-- Link Input -->
       <input type="text" class="input-form-text" id="link" required [(ngModel)]="user.link" name="link" #link="ngModel"
         placeholder="Link to job post">
       <div [hidden]="link.valid || link.pristine" class="alert alert-danger">
         Link to job post is required
       </div>
+      <div [hidden]="(invalidLink)" class="alert alert-danger">
+        Link is in the incorrect format
+      </div>
+
 
       <!-- Add Skills -->
       <div class="input-group mb-3">

@@ -17,6 +17,7 @@ export class UserFormComponent implements OnInit {
   skillsObj = {};
   duplicated = false;
   isEmpty = false;
+  invalidLink = true;
 
   skill_arr = [''];
   in_skills_in_job = ['']
@@ -47,6 +48,7 @@ export class UserFormComponent implements OnInit {
   submitted = false;
 
   onSubmit() {
+    this.invalidLink = true;
     this.submitted = true;
     this.user.skills = this.skillsObj;
     console.log(JSON.stringify(this.user)); // Here's the data in json
@@ -57,17 +59,22 @@ export class UserFormComponent implements OnInit {
     if (this.validURL()) {
       this.sendUserData();
     } else {
-      console.log("Incorrect link");
+      this.invalidLink = false;
+      return;
+      console.log('Incorrect link');
     }
   }
 
   validURL() {
-    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    var pattern = new RegExp(
+      '^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$',
+      'i'
+    ); // fragment locator
     return !!pattern.test(this.user.link);
   }
 
