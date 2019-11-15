@@ -23,11 +23,12 @@ export class UserFormComponent implements OnInit {
   skill_arr = [''];
 
   //returned values
-  skillsInBoth = [''];
-  skillsNotInResume = [''];
+  skillsInBoth = [];
+  skillsNotInResume = [];
   skillsInResume = [];
 
   displaySkillsInResume = false;
+  displaySkillsNotInResume = false;
 
   sj = '';
   snj = '';
@@ -112,6 +113,11 @@ export class UserFormComponent implements OnInit {
     console.log(skill);
   }
 
+  skillInResumeClicked(skill:String)
+  {
+    console.log(skill);
+  }
+
   removeSkill(removeSkill: String) {
     this.skills.forEach(skill => {
       //console.log(skill);
@@ -170,12 +176,6 @@ export class UserFormComponent implements OnInit {
       }
       if (this.snj != '') {
         this.skillsInResume = this.snj.split('|');
-      }
-
-      if (this.skillsInResume.length > 0)
-      {
-        console.log("LENGTH OF SKILLS: " + this.skillsInResume.length);
-        this.displaySkillsInResume = true;
       }
       //this.cdRef.markForCheck();
       //console.log("FORMATTED RETURN LIST: " + this.in_skills_in_job.toString() + this.not_in_skills_in_job.toString() + this.not_in_job_in_skills.toString());
