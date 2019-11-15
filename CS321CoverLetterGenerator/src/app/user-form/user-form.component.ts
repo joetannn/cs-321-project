@@ -9,7 +9,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserFormComponent implements OnInit {
   //test array
+<<<<<<< HEAD
   skillsNotInResume = [];
+=======
+  //skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
+>>>>>>> 9a5ec75034104857cde6794add12b53360b71ce3
 
   skills = [];
   skill = '';
@@ -17,12 +21,19 @@ export class UserFormComponent implements OnInit {
   skillsObj = {};
   duplicated = false;
   isEmpty = false;
-  invalidLink = true;
 
   skill_arr = [''];
+<<<<<<< HEAD
   in_skills_in_job = [''];
   not_in_skills_in_job = [''];
   not_in_job_in_skills = [''];
+=======
+
+  //returned values
+  skillsInBoth = ['']
+  skillsNotInResume = ['']
+  skillsInResume = ['']
+>>>>>>> 9a5ec75034104857cde6794add12b53360b71ce3
 
   sj = '';
   snj = '';
@@ -48,7 +59,6 @@ export class UserFormComponent implements OnInit {
   submitted = false;
 
   onSubmit() {
-    this.invalidLink = true;
     this.submitted = true;
     this.user.skills = this.skillsObj;
     console.log(JSON.stringify(this.user)); // Here's the data in json
@@ -59,22 +69,17 @@ export class UserFormComponent implements OnInit {
     if (this.validURL()) {
       this.sendUserData();
     } else {
-      this.invalidLink = false;
-      return;
-      console.log('Incorrect link');
+      console.log("Incorrect link");
     }
   }
 
   validURL() {
-    var pattern = new RegExp(
-      '^(https?:\\/\\/)?' + // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-        '(\\#[-a-z\\d_]*)?$',
-      'i'
-    ); // fragment locator
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
     return !!pattern.test(this.user.link);
   }
 
@@ -155,6 +160,7 @@ export class UserFormComponent implements OnInit {
 
   sendUserData() {
     this.getUserData().subscribe((data: any) => {
+<<<<<<< HEAD
       console.log('RETURN DATA: ' + JSON.stringify(data));
       this.sj = data['inSkllsinJob'];
       this.nsj = data['notInSkillsinJob'];
@@ -168,6 +174,29 @@ export class UserFormComponent implements OnInit {
       if (this.snj.length != 0) {
         this.not_in_job_in_skills = this.snj.split('|');
       }
+=======
+      console.log("RETURN DATA: " + JSON.stringify(data));
+      this.sj = data['1']
+      this.nsj = data['2']
+      this.snj = data['3']
+      //console.log("STRING DATA: " + this.sj + "||" + this.nsj + "||" + this.snj);
+      if (this.sj != "")
+      {
+        this.skillsInBoth = this.sj.split("|");
+      }
+      if (this.nsj != "")
+      {
+        this.skillsNotInResume = this.nsj.split("|");
+      }
+      if (this.snj != "")
+      {
+        this.skillsInResume = this.snj.split("|")
+      }
+
+      //console.log("FORMATTED RETURN LIST: " + this.in_skills_in_job.toString() + this.not_in_skills_in_job.toString() + this.not_in_job_in_skills.toString());
+
+
+>>>>>>> 9a5ec75034104857cde6794add12b53360b71ce3
     });
   }
 }
