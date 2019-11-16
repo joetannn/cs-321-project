@@ -5,12 +5,11 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss'],
+  styleUrls: ['./user-form.component.scss']
   //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent implements OnInit {
   //test array
-  //skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
 
   skills = [];
   skill = '';
@@ -18,7 +17,6 @@ export class UserFormComponent implements OnInit {
   skillsObj = {};
   duplicated = false;
   isEmpty = false;
-
 
   skill_arr = [''];
 
@@ -82,8 +80,6 @@ export class UserFormComponent implements OnInit {
   }
 
   addSkill() {
-    //check for duplicates before adding here
-
     //removes the warning
     this.duplicated = false;
     this.isEmpty = false;
@@ -99,40 +95,46 @@ export class UserFormComponent implements OnInit {
       return;
     }
 
-    //did all this because arrays cannot be in json, has to be an object
-    //skillsList{count: skill}
-
     this.skillsObj[this.count] = this.skill;
     this.skills.push(this.skillsObj[this.count]);
     this.count++;
     this.skill = '';
   }
 
-  //add to the skills list here but make sure to remove if user double clicks the checkbox
-  skillNotInResumeClicked(skill: String) {
-    console.log(skill);
+  skillClicked(skill: String) {
+    if (this.skills.includes(skill)) {
+      var index = this.skills.indexOf(skill);
+      if (index !== -1) {
+        this.skills.splice(index, 1);
+      }
+    } else {
+      this.skills.push(skill);
+    }
+    this.printAllSkills();
   }
 
-  skillInResumeClicked(skill:String)
-  {
-    console.log(skill);
+  printAllSkills() {
+    console.log('-------- Final skills list -----------');
+    this.skills.forEach(skill => {
+      console.log(skill);
+    });
+    console.log('------------------------------------');
   }
 
   removeSkill(removeSkill: String) {
-    this.skills.forEach(skill => {
-      //console.log(skill);
-      if (removeSkill == skill) {
-        var index = this.skills.indexOf(skill);
-        this.skills.splice(index, 1);
+    var index = this.skills.indexOf(removeSkill);
+    if (index !== -1) {
+      this.skills.splice(index, 1);
+    }
 
-        //don't know how to remove an object from an array in typescript.. will fix this later
-        this.skillsObj[index] = null;
-      }
-    });
-  }
+    //this.skills.forEach(skill => {
+    //console.log(skill);
+    // if (removeSkill == skill) {
+    //   var index = this.skills.indexOf(skill);
+    //   this.skills.splice(index, 1);
 
-  get diagnostic() {
-    return JSON.stringify(this.user);
+    //   //don't know how to remove an object from an array in typescript.. will fix this later
+    //   this.skillsObj[index] = null;
   }
 
   //test methods that test connectivity

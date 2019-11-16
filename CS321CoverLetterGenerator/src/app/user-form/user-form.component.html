@@ -80,16 +80,16 @@
       <input type="file" id="file" style="color: #ddd;cursor: pointer;">
 
       <!-- Paste Resume -->
-      <textarea class="input-form-text skillList" placeholder="Paste Your Resume" [(ngModel)]="user.resume"
+      <textarea class="input-form-text skillList" placeholder="Paste Your Resume" required [(ngModel)]="user.resume"
         name="resume" #resume="ngModel"></textarea>
+
+      <div [hidden]="resume.valid || resume.pristine" class="alert alert-danger">
+        Resume is required
+      </div>
 
       <!-- Create Button -->
       <button type="submit" class="btn input-form-btn" [disabled]="!userForm.form.valid" (click)="onSubmit()"
         data-toggle="modal" data-target=" #skillsNotInResumeModal">Create</button>
-      <!--
-        <button type="submit" class="btn input-form-btn" [disabled]="!userForm.form.valid" (click)="onSubmit()"
-        data-toggle="modal" data-target=" #coverLetterModal">Create</button>
-      -->
 
     </form>
 
@@ -119,7 +119,7 @@
 
     <!-- Skills Not In Resume Modal -->
 
-  <div class="modal-letter modal fade" id="skillsNotInResumeModal" tabindex="-1" role="dialog" aria-labelledby=""
+    <div class="modal-letter modal fade" id="skillsNotInResumeModal" tabindex="-1" role="dialog" aria-labelledby=""
       aria-hidden="true">
 
       <div class="modal-dialog" role="document">
@@ -132,25 +132,25 @@
           </div>
           <p>Here is a list of skills that were found on the job posting but not in your resume. Would you like to
             include any of these in your cover letter?</p>
-            <br>
-            <p> If None are present, press "Continue". Please wait if the input does not seem correct. <p>
-          <div class="modal-body">
+          <br>
+          <p> If None are present, press "Continue". Please wait if the input does not seem correct. <p>
+              <div class="modal-body">
 
 
-            <div class="skillSelect" *ngFor="let skillNotInResume of skillsNotInResume">
-              <label class="skillNotInResumeItem">
-                <input type="checkbox" (click)="skillNotInResumeClicked(skillNotInResume)">
-                <i class="fas fa-check"></i>
-                <span class="text">{{skillNotInResume}}</span>
-              </label>
-            </div>
+                <div class="skillSelect" *ngFor="let skillNotInResume of skillsNotInResume">
+                  <label class="skillNotInResumeItem">
+                    <input type="checkbox" (click)="skillClicked(skillNotInResume)">
+                    <i class="fas fa-check"></i>
+                    <span class="text">{{skillNotInResume}}</span>
+                  </label>
+                </div>
 
 
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn input-form-btn" data-toggle="modal" data-target=" #coverLetterModal"
-              data-dismiss="modal" data-target=" #skillsInResumeModal">Continue</button>
-          </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn input-form-btn" data-toggle="modal" data-target=" #coverLetterModal"
+                  data-dismiss="modal" data-target=" #skillsInResumeModal">Continue</button>
+              </div>
         </div>
       </div>
     </div>
@@ -166,27 +166,27 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <p>Here is a list of skills that were found on your resume but not in the job description. Would you like to
-            include any of these in your cover letter?</p>
+          <p>Here are the skills that were supplied but not asked for in the job description. Would you
+            like to remove any of these skills from your cover letter?</p>
           <br>
           <p> If None are present, press "Create". Please wait if the input does not seem correct. <p>
-          <div class="modal-body">
+              <div class="modal-body">
 
-            <!-- skills list goes here -->
-            <div class="skillSelect" *ngFor="let skillInResume of skillsInResume">
-              <label class="skillInResumeItem">
-                <input type="checkbox" (click)="skillInResumeClicked(skillInResume)">
-                <i class="fas fa-check"></i>
-                <span class="text">{{skillInResume}}</span>
-              </label>
-            </div>
+                <!-- skills list goes here -->
+                <div class="skillSelect" *ngFor="let skillInResume of skillsInResume">
+                  <label class="skillNotInResumeItem">
+                    <input type="checkbox" (click)="skillClicked(skillInResume)">
+                    <i class="fas fa-check"></i>
+                    <span class="text">{{skillInResume}}</span>
+                  </label>
+                </div>
 
 
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn input-form-btn" data-toggle="modal" data-target=" #coverLetterModal"
-              data-dismiss="modal">Create</button>
-          </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn input-form-btn" data-toggle="modal" data-target=" #coverLetterModal"
+                  data-dismiss="modal">Create</button>
+              </div>
         </div>
       </div>
     </div>
