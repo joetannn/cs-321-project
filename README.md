@@ -1,6 +1,11 @@
 # cs-321-project
 CS 321 Project
 
+# TO RUN (in seperate windows)
+hug -f api.py
+navigate to /CS321CoverLetterGenerator/ and run ng serve
+
+
 ## Setup Requirements
 1. Python 3.6+
 
