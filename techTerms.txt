@@ -18,7 +18,8 @@ Database
 Wizard
 Perl
 SQL
-C/C++
+C
+C++
 Text Editor
 BIOS
 Template
@@ -363,4 +364,6 @@ PascalCase
 Machine Learning
 ML
 AI
+TS/SCI
+Agile
 

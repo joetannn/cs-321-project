@@ -27,25 +27,31 @@ class JobScraper:
             char = chr(s)
             if(char == '<'):
                 inTag = True
+                #print('Tag'+ str(curTag))
                 curTag = ""
             elif(char == '>'):
                 if(inTag):
-                    if(curTag == "script"):
-                        inScript = True
-                    elif(curTag == "/script"):
-                        inScript = False
+                    #if(curTag == "script"):
+                    #    inScript = True
+                    #elif(curTag == "/script"):
+                    #    inScript = False
+                    #print("Tag"+ str(curTag))
                     curTag = ""
                 inTag = False
-            elif(char == ' ' or char == '\n' or char == '\t'):
+            elif(char == ' ' or char == '\n' or char == '\r' or char == '\t'):
                 if(inTag):
-                    if(curTag == "script"):
-                        inScript = True
-                    elif(curTag == "/script"):
-                        inScript = False
+                    #if(curTag == "script"):
+                    #    inScript = True
+                    #elif(curTag == "/script"):
+                    #    inScript = False
+                    #print("Tag"+ str(curTag))
                     curTag = ""
 
                 if(inWord and (not inScript)):
-                    allWords.append([curWord])
+                    exclude = set('!,.()?~|')
+                    curWord = ''.join(char for char in curWord if char not in exclude)
+                    #print("Word"+ str(curWord))
+                    allWords.append(curWord)
                     curWord = ""
                 inWord = False
             else:
@@ -59,7 +65,7 @@ class JobScraper:
         return allWords
 
 #Arbitrary job posting for testing
-#url = 'https://jobs.raytheon.com/job/colorado-springs/mission-assurance-center-system-support-engineer/4679/13244094'
+#url = 'https://www.alarm.com/about/open-positions.aspx?gh_jid=4267530002'
 #scraper = JobScraper(url)
 #allWords = scraper.scrape()
 
@@ -69,7 +75,7 @@ class JobScraper:
 #        allWords.remove(word)
 #
 #for word in allWords:
-    #print("RAYTHEON POST:" + str(word))
+#   print("RAYTHEON POST:" + str(word))
   #  pass
 
 

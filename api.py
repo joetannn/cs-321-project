@@ -36,7 +36,7 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     api_position = position
     api_link = link
     #list of skills is array
-    api_skills = base64.b64decode(skills).decode('utf-8').split("#")
+    api_skills = base64.b64decode(skills).decode('utf-8').split("|")
     api_skills.pop(0)
 
     #Strip duplicates
@@ -54,8 +54,9 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
 
     print("Extending resume to skills list")
     api_skills.extend(api_resume)
-    print("FINAL SKILLS LIST: " + str(api_skills))
 
+
+    print("FINAL SKILLS LIST: " + str(api_skills))
 
     scrape_method = skills_class.scrape_link
     scrape_method(api_link)
@@ -67,7 +68,19 @@ def receive_data(firstName: hug.types.text, lastName: hug.types.text, position: 
     extraSkillsListSkills = extra_skill_list_call_call(api_skills)
     print("SKILLS FROM SKILLS_LIST NOT IN JOB: " + str(extraSkillsListSkills))
 
-    return values
+    notInSkillsInJob = "|".join(list(set(extraJobSkills)))
+    if notInSkillsInJob != "" and "|" in notInSkillsInJob:
+        notInSkillsInJob = notInSkillsInJob[1:]
+    notInJobInSkills = "|".join(extraSkillsListSkills)
+    if notInJobInSkills != "" and "|" in notInJobInSkills:
+        notInJobInSkills = notInJobInSkills[1:]
+    inSkillsinJob = skills_class.getSimilarSkills(api_skills)
+    inSkillsinJob = "|".join(list(set(inSkillsinJob)))
+    if inSkillsinJob != "" and "|" in inSkillsinJob:
+        inSkillsinJob = inSkillsinJob[1:]
+    print("SKILLS IN JOB AND LIST:" + inSkillsinJob)
+    return {'1':inSkillsinJob,'2': notInSkillsInJob, '3': notInJobInSkills}
+    #return {'1':'abc|def','2':'yuuu2','3':'skillsboi|a|b'}
 
 
 def buildCoverLetter():

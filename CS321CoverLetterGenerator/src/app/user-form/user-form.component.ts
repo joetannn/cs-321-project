@@ -6,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
+  //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent implements OnInit {
   //test array
-  skillsNotInResume = ['React', 'C#', 'Ruby', 'PHP', 'SQL', 'Go'];
 
   skills = [];
   skill = '';
@@ -19,6 +19,18 @@ export class UserFormComponent implements OnInit {
   isEmpty = false;
 
   skill_arr = [''];
+
+  //returned values
+  skillsInBoth = [];
+  skillsNotInResume = [];
+  skillsInResume = [];
+
+  displaySkillsInResume = false;
+  displaySkillsNotInResume = false;
+
+  sj = '';
+  snj = '';
+  nsj = '';
 
   //demo
   //if in prod, change this!!
@@ -43,16 +55,31 @@ export class UserFormComponent implements OnInit {
     this.submitted = true;
     this.user.skills = this.skillsObj;
     console.log(JSON.stringify(this.user)); // Here's the data in json
-    console.log('Running math test');
+    console.log('Running math connection test....');
     //if this fails, there is no connectivity
     this.showMath();
     //
-    this.sendUserData();
+    if (this.validURL()) {
+      this.sendUserData();
+    } else {
+      console.log('Incorrect link');
+    }
+  }
+
+  validURL() {
+    var pattern = new RegExp(
+      '^(https?:\\/\\/)?' + // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '(\\#[-a-z\\d_]*)?$',
+      'i'
+    ); // fragment locator
+    return !!pattern.test(this.user.link);
   }
 
   addSkill() {
-    //check for duplicates before adding here
-
     //removes the warning
     this.duplicated = false;
     this.isEmpty = false;
@@ -68,35 +95,46 @@ export class UserFormComponent implements OnInit {
       return;
     }
 
-    //did all this because arrays cannot be in json, has to be an object
-    //skillsList{count: skill}
-
     this.skillsObj[this.count] = this.skill;
     this.skills.push(this.skillsObj[this.count]);
     this.count++;
     this.skill = '';
   }
 
-  //add to the skills list here but make sure to remove if user double clicks the checkbox
-  skillNotInResumeClicked(skill: String) {
-    console.log(skill);
+  skillClicked(skill: String) {
+    if (this.skills.includes(skill)) {
+      var index = this.skills.indexOf(skill);
+      if (index !== -1) {
+        this.skills.splice(index, 1);
+      }
+    } else {
+      this.skills.push(skill);
+    }
+    this.printAllSkills();
+  }
+
+  printAllSkills() {
+    console.log('-------- Final skills list -----------');
+    this.skills.forEach(skill => {
+      console.log(skill);
+    });
+    console.log('------------------------------------');
   }
 
   removeSkill(removeSkill: String) {
-    this.skills.forEach(skill => {
-      //console.log(skill);
-      if (removeSkill == skill) {
-        var index = this.skills.indexOf(skill);
-        this.skills.splice(index, 1);
+    var index = this.skills.indexOf(removeSkill);
+    if (index !== -1) {
+      this.skills.splice(index, 1);
+    }
 
-        //don't know how to remove an object from an array in typescript.. will fix this later
-        this.skillsObj[index] = null;
-      }
-    });
-  }
+    //this.skills.forEach(skill => {
+    //console.log(skill);
+    // if (removeSkill == skill) {
+    //   var index = this.skills.indexOf(skill);
+    //   this.skills.splice(index, 1);
 
-  get diagnostic() {
-    return JSON.stringify(this.user);
+    //   //don't know how to remove an object from an array in typescript.. will fix this later
+    //   this.skillsObj[index] = null;
   }
 
   //test methods that test connectivity
@@ -106,7 +144,7 @@ export class UserFormComponent implements OnInit {
 
   showMath() {
     this.getMath().subscribe((data: any) => {
-      console.log('SHOULD EQUAL 14: ' + JSON.stringify(data));
+      console.log('Connection Test: ' + JSON.stringify(data));
     });
   }
 
@@ -120,14 +158,29 @@ export class UserFormComponent implements OnInit {
       this.skill_arr.push(this.skills[skill]);
     }
 
-    params.set('skills', btoa(this.skill_arr.join('#')));
-    console.log('PARAMS: ' + params.toString());
+    params.set('skills', btoa(this.skill_arr.join('|')));
+    console.log('SENDING PARAMS: ' + params.toString());
     return this.http.get(this.baseUrl + this.sendUrl + '?' + params.toString());
   }
 
   sendUserData() {
     this.getUserData().subscribe((data: any) => {
-      console.log(JSON.stringify(data));
+      console.log('RETURN DATA: ' + JSON.stringify(data));
+      this.sj = data['1'];
+      this.nsj = data['2'];
+      this.snj = data['3'];
+      //console.log("STRING DATA: " + this.sj + "||" + this.nsj + "||" + this.snj);
+      if (this.sj != '') {
+        this.skillsInBoth = this.sj.split('|');
+      }
+      if (this.nsj != '') {
+        this.skillsNotInResume = this.nsj.split('|');
+      }
+      if (this.snj != '') {
+        this.skillsInResume = this.snj.split('|');
+      }
+      //this.cdRef.markForCheck();
+      //console.log("FORMATTED RETURN LIST: " + this.in_skills_in_job.toString() + this.not_in_skills_in_job.toString() + this.not_in_job_in_skills.toString());
     });
   }
 }
