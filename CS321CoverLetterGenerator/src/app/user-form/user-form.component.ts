@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/user';
 import { HttpClient } from '@angular/common/http';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
+
   //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFormComponent implements OnInit {
@@ -45,7 +47,10 @@ export class UserFormComponent implements OnInit {
 
   user = new User('', '', '', '', {}, '');
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {
+
+  }
 
   ngOnInit() {}
 
@@ -183,7 +188,84 @@ export class UserFormComponent implements OnInit {
       //console.log("FORMATTED RETURN LIST: " + this.in_skills_in_job.toString() + this.not_in_skills_in_job.toString() + this.not_in_job_in_skills.toString());
     });
   }
+
+  insertKeywords()
+  {
+    var seeds = ['I am proficient in ', 'I am also highly skilled in ', 'One of my passions are '];
+
+
+    console.log("Inserting Keywords");
+    this.coverLetter = "";
+    this.coverLetter += this.user.firstName + " " + this.user.lastName;
+    this.newline();
+    this.coverLetter += formatDate(new Date(), 'dd/MM/yyyy', 'en');
+    //this.coverLetter += this.user.position;
+    this.newline();
+    this.newline();
+    this.coverLetter += "To whom It May Concern,";
+    this.newline();
+    this.coverLetter += "I am applying for the position of " + this.user.position + " at your company. I located the job posting on your website and found that I fit the posted qualifications.";
+    this.newline();
+    if (this.skills.length > 3)
+    {
+      this.coverLetter += "Some of my skills applicable to the job include " + this.skills[0] + ", " + this.skills[1] + ", and " + this.skills[2] + ". ";
+      var i: number;
+      for (i = 3; i < 6; i++)
+      {
+        if (this.skills[i] == "undefined") continue;
+         this.coverLetter += seeds[i - 3] + this.skills[i] + ". ";
+      }
+      if (i < this.skills.length) this.coverLetter += "More of my skills include ";
+      for(i = 6; i < this.skills.length; i++)
+      {
+        if (i + 1 == this.skills.length)
+        {
+          this.coverLetter += " and " + this.skills[i] + ". ";
+        }
+        else
+        {
+          this.coverLetter += this.skills[i] + ", ";
+        }
+
+      }
+    }
+    else
+    {
+        var i: number;
+        for (i = 0; i < this.skills.length; i++)
+        {
+          this.coverLetter+= seeds[i] + this.skills[i] + '.';
+        }
+
+    }
+
+    this.newline();
+    this.coverLetter += "Looking forward to hearing back from you soon. Please contact me if you have any additional questions or concerns.";
+    this.newline();
+    this.newline();
+    this.coverLetter += this.user.firstName + " " + this.user.lastName;
+
+
+
+  }
+
+  newline()
+  {
+    this.coverLetter += '\n'
+  }
+
+  copyToClipboard(item)
+  {
+    document.addEventListener('copy', (e: ClipboardEvent) => {
+        e.clipboardData.setData('text/plain', (item));
+        e.preventDefault();
+        document.removeEventListener('copy', null);
+      });
+      document.execCommand('copy');
+  }
 }
+
+
 
 //******************************  Cover Letter Template  **************************************
 

@@ -111,7 +111,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Copy</button>
+            <button type="button" class="btn btn-primary" (click)="copyToClipboard(this.coverLetter)">Copy</button>
           </div>
         </div>
       </div>
@@ -185,7 +185,7 @@
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn input-form-btn" data-toggle="modal" data-target=" #coverLetterModal"
-                  data-dismiss="modal">Create</button>
+                  data-dismiss="modal" (click)="this.insertKeywords()">Create</button>
               </div>
         </div>
       </div>
