@@ -206,7 +206,7 @@ export class UserFormComponent implements OnInit {
     this.newline();
     this.coverLetter += "I am applying for the position of " + this.user.position + " at your company. I located the job posting on your website and found that I fit the posted qualifications.";
     this.newline();
-    if (this.skills.length > 3)
+    /*if (this.skills.length > 3)
     {
       this.coverLetter += "Some of my skills applicable to the job include " + this.skills[0] + ", " + this.skills[1] + ", and " + this.skills[2] + ". ";
       var i: number;
@@ -236,6 +236,23 @@ export class UserFormComponent implements OnInit {
         {
           this.coverLetter+= seeds[i] + this.skills[i] + '.';
         }
+
+    } */
+    if (this.skills.length > 0)
+    {
+      this.coverLetter += "Some of my skills include ";
+    }
+
+    for (var i = 0; i < this.skills.length; i++)
+    {
+      if (i + 1 == this.skills.length)
+      {
+          this.coverLetter += this.skills[i] + ".";
+      }
+      else
+      {
+        this.coverLetter += this.skills[i] + ", ";
+      }
 
     }
 
